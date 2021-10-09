@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, FlatList } from 'react-native';
+import { StyleSheet, View, FlatList, ToastAndroid } from 'react-native';
 
 import GoalItem from "./components/GoalItem";
 import GoalInput from "./components/GoalInput";
@@ -16,6 +16,11 @@ export default function App() {
   const onDeleteHandler = (uid) => {
     console.log(`Deleted: ${uid}`);
     setList(currentGoals => currentGoals.filter(item => item.uid != uid));
+    showToast(uid);
+  }
+
+  const showToast = (uid) => {
+    ToastAndroid.showWithGravity(`Deleted ${uid}`, ToastAndroid.SHORT, ToastAndroid.CENTER);
   }
 
   return (
